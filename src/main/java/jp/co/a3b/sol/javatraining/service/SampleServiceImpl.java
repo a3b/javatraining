@@ -11,7 +11,7 @@ public class SampleServiceImpl implements SampleService {
 	}
 
 	@Override
-	public Optional<String> findOne() {
+	public Optional<String> findOne(String id) {
 		return null;
 	}
 
