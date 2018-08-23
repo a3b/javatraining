@@ -3,6 +3,7 @@ package jp.co.a3b.sol.javatraining.controller;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import java.util.Optional;
@@ -31,19 +32,50 @@ public class SampleControllerTest {
 	}
 
 	@Test
+	public void testFindAll() {
+		when(this.sampleService.findAll()).thenReturn(Optional.empty());
+
+		assertThat(this.sampleController.findAll(), hasItems("Not Found."));
+	}
+
+	@Test
 	public void testFileOne() {
 		String id = "testID";
-		when(this.sampleService.validation()).thenReturn(true);
+		when(this.sampleService.validation(anyInt(), any())).thenReturn(true);
 		when(this.sampleService.findOne(anyString())).thenReturn(Optional.of(id));
 
 		assertEquals(this.sampleController.findOne(id), id);
 	}
 
 	@Test
-	public void testFindAll() {
-		when(this.sampleService.findAll()).thenReturn(Optional.empty());
-		assertThat(this.sampleController.findAll(), hasItems("Not Found."));
-		System.out.println(this.sampleController.findAll().get(0));
+	public void testFileOne存在するIDを指定() {
+		String id = "testID";
+		when(this.sampleService.validation(anyInt(), any())).thenReturn(true);
+		when(this.sampleService.findOne(anyString())).thenReturn(Optional.empty());
+		when(this.sampleService.findOne(id)).thenReturn(Optional.of(id));
+
+		assertEquals(this.sampleController.findOne(id), id);
+	}
+
+	@Test
+	public void testFileOne存在しないIDを指定() {
+		String id = "testID";
+		String nonId = "testNonID";
+		when(this.sampleService.validation(anyInt(), any())).thenReturn(true);
+		when(this.sampleService.findOne(anyString())).thenReturn(Optional.empty());
+		when(this.sampleService.findOne(id)).thenReturn(Optional.of(id));
+
+		assertEquals(this.sampleController.findOne(nonId), "Not Found.");
+	}
+
+	@Test
+	public void testFileOne指定したIDが不正() {
+		String id = "testID";
+		when(this.sampleService.validation(anyInt(), any())).thenReturn(false);
+		when(this.sampleService.findOne(anyString())).thenReturn(Optional.empty());
+		when(this.sampleService.findOne(id)).thenReturn(Optional.of(id));
+
+		assertEquals(this.sampleController.findOne(id), "Invalid ID.");
 	}
 
 }

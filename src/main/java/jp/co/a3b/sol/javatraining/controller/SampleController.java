@@ -4,15 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.co.a3b.sol.javatraining.service.SampleService;
-import jp.co.a3b.sol.javatraining.service.SampleServiceImpl;
 
 public class SampleController {
-	private SampleService sampleService;
+	// 関連するサービスクラス
+	private final SampleService sampleService;
 
-	public SampleController() {
-		this.sampleService = new SampleServiceImpl();
+	/**
+	 * コンストラクタ
+	 * @param sampleService
+	 */
+	public SampleController(SampleService sampleService) {
+		this.sampleService = sampleService;
 	}
 
+	/**
+	 * すべてのデータを取得する<br />
+	 * ・サービスクラスの findAll メソッドを呼び、データを取得する<br />
+	 * ・データが存在する場合は、そのデータを返す<br />
+	 * ・データが存在しない場合は、"Not Found."を 0 番目の要素に持つ List を返す<br />
+	 * @return
+	 */
 	public List<String> findAll() {
 		return this.sampleService.findAll().orElseGet(() -> {
 			List<String> list = new ArrayList<String>();
@@ -21,8 +32,15 @@ public class SampleController {
 		});
 	}
 
+	/**
+	 * 指定した ID に対応するデータを取得する<br />
+	 * ・サービスクラスの findOne メソッドを呼び、データを取得する<br />
+	 * ・データが存在する場合は、そのデータを返す<br />
+	 * ・データが存在しない場合は、"Not Found."を 0 番目の要素に持つ List を返す<br />
+	 * @return
+	 */
 	public String findOne(String id) {
-		if(this.sampleService.validation()) {
+		if(this.sampleService.validation(1, id)) {
 			return this.sampleService.findOne(id).orElseGet(() -> {
 				return "Not Found.";
 			});

@@ -6,5 +6,5 @@ import java.util.Optional;
 public interface SampleService {
 	public Optional<List<String>> findAll();
 	public Optional<String> findOne(String id);
-	public boolean validation();
+	public <T> boolean validation(int key, T value);
 }

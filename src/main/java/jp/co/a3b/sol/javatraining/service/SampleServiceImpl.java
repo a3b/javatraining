@@ -16,7 +16,7 @@ public class SampleServiceImpl implements SampleService {
 	}
 
 	@Override
-	public boolean validation() {
+	public <T> boolean validation(int key, T value) {
 		return false;
 	}
 
