@@ -26,8 +26,10 @@ public class SampleControllerTest {
 	@Mock( name="sampleService" )
 	private SampleService sampleService;
 
+	// 共通の開始処理（テストケースの度に実行される）
 	@Before
 	public void setup() {
+		System.out.println("テスト開始");
 		MockitoAnnotations.initMocks(this);
 	}
 
@@ -50,7 +52,8 @@ public class SampleControllerTest {
 	@Test
 	public void testFileOne存在するIDを指定() {
 		String id = "testID";
-		when(this.sampleService.validation(anyInt(), any())).thenReturn(true);
+		when(this.sampleService.validation(anyInt(), any())).thenReturn(false);
+		when(this.sampleService.validation(1, id)).thenReturn(true);
 		when(this.sampleService.findOne(anyString())).thenReturn(Optional.empty());
 		when(this.sampleService.findOne(id)).thenReturn(Optional.of(id));
 
@@ -61,7 +64,8 @@ public class SampleControllerTest {
 	public void testFileOne存在しないIDを指定() {
 		String id = "testID";
 		String nonId = "testNonID";
-		when(this.sampleService.validation(anyInt(), any())).thenReturn(true);
+		when(this.sampleService.validation(anyInt(), any())).thenReturn(false);
+		when(this.sampleService.validation(1, id)).thenReturn(true);
 		when(this.sampleService.findOne(anyString())).thenReturn(Optional.empty());
 		when(this.sampleService.findOne(id)).thenReturn(Optional.of(id));
 
