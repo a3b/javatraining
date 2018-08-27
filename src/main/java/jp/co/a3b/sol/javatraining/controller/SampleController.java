@@ -5,8 +5,11 @@ import java.util.List;
 
 import jp.co.a3b.sol.javatraining.service.SampleService;
 
+/**
+ * JUnit テストサンプル用のコントローラクラス
+ */
 public class SampleController {
-	// 関連するサービスクラス
+	// 依存するサービスクラス
 	private final SampleService sampleService;
 
 	/**
@@ -34,6 +37,7 @@ public class SampleController {
 
 	/**
 	 * 指定した ID に対応するデータを取得する<br />
+	 * ・指定したIDが不正データでないか確認する（キー番号は「1」）
 	 * ・サービスクラスの findOne メソッドを呼び、データを取得する<br />
 	 * ・データが存在する場合は、そのデータを返す<br />
 	 * ・データが存在しない場合は、"Not Found."を 0 番目の要素に持つ List を返す<br />
