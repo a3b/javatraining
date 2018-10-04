@@ -3,20 +3,20 @@ package jp.co.a3b.sol.javatraining.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.co.a3b.sol.javatraining.service.SampleService;
+import jp.co.a3b.sol.javatraining.service.SampleServiceImpl;
 
 /**
  * JUnit テストサンプル用のコントローラクラス
  */
 public class SampleController {
 	// 依存するサービスクラス
-	private final SampleService sampleService;
+	private final SampleServiceImpl sampleService;
 
 	/**
 	 * コンストラクタ
 	 * @param sampleService
 	 */
-	public SampleController(SampleService sampleService) {
+	public SampleController(SampleServiceImpl sampleService) {
 		this.sampleService = sampleService;
 	}
 

@@ -14,7 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import jp.co.a3b.sol.javatraining.service.SampleService;
+import jp.co.a3b.sol.javatraining.service.SampleServiceImpl;
 
 
 public class SampleControllerTest {
@@ -24,7 +24,7 @@ public class SampleControllerTest {
 
 	// テスト対象が依存しているクラス
 	@Mock( name="sampleService" )
-	private SampleService sampleService;
+	private SampleServiceImpl sampleService;
 
 	// 共通の開始処理（テストケースの度に実行される）
 	@Before

@@ -6,7 +6,7 @@ import java.util.Optional;
 /**
  * JUnit テストサンプル用のサービスインターフェース
  */
-public interface SampleService {
+public interface SampleServiceImpl {
 	/**
 	 * すべてのデータを取得する
 	 * @return
