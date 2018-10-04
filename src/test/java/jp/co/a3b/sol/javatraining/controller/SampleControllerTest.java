@@ -66,6 +66,7 @@ public class SampleControllerTest {
 		String nonId = "testNonID";
 		when(this.sampleService.validation(anyInt(), any())).thenReturn(false);
 		when(this.sampleService.validation(1, id)).thenReturn(true);
+		when(this.sampleService.validation(1, nonId)).thenReturn(true);
 		when(this.sampleService.findOne(anyString())).thenReturn(Optional.empty());
 		when(this.sampleService.findOne(id)).thenReturn(Optional.of(id));
 
